@@ -95,9 +95,7 @@ body {
 .play-btn:hover { background: #ffde59; transform: scale(1.02); }
 
 
-/* ========================================== */
-/* ESTILOS FIÉIS DO BATTLE PASS (REFERÊNCIA)  */
-/* ========================================== */
+/* BATTLE PASS (100 TIERS) */
 #content-battlepass {
     background: linear-gradient(135deg, #1b365d 0%, #0a1424 100%) !important;
     display: flex; justify-content: center; align-items: center;
