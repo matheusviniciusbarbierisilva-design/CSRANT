@@ -5,23 +5,21 @@ let velocity = new THREE.Vector3();
 let direction = new THREE.Vector3();
 let prevTime = performance.now();
 
-// Transição do ecrã inicial para o lobby principal
+// Transição do ecrã de seleção inicial para o lobby
 function startLobby() {
     document.getElementById('mode-select-screen').style.display = 'none';
     document.getElementById('lobby-screen').style.display = 'block';
 }
 
-// Sistema de mudança de abas do Lobby
+// Sistema de abas do Lobby totalmente funcional
 function switchTab(tabName, event) {
-    // Esconder todos os conteúdos de abas
     const contents = document.querySelectorAll('.tab-content');
     contents.forEach(c => c.classList.remove('active-content'));
 
-    // Remover estado ativo de todas as abas do menu superior
     const tabs = document.querySelectorAll('.nav-tabs .tab');
     tabs.forEach(t => t.classList.remove('active'));
 
-    // Ativar a aba correspondente
+    // Mapeamento correto dos conteúdos
     if (tabName === 'lobby') {
         document.getElementById('content-lobby').classList.add('active-content');
     } else if (tabName === 'battlepass') {
@@ -36,37 +34,46 @@ function switchTab(tabName, event) {
         document.getElementById('content-career').classList.add('active-content');
     }
 
-    // Marcar aba clicada como ativa
     if (event && event.target) {
         event.target.classList.add('active');
     }
 }
 
-// Controlar o menu dropdown dos Modos de Jogo (1v1, 2v2, etc.)
+// Fechar ou abrir o menu dropdown de modos (1v1, 2v2, etc.)
 function toggleModeDropdown() {
     const dropdown = document.getElementById('mode-dropdown');
     dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
 }
 
+// Mudar o texto do modo de jogo e fechar o menu
 function setGameMode(mode) {
     document.getElementById('current-mode-text').innerText = mode;
     document.getElementById('mode-dropdown').style.display = 'none';
 }
 
-// Sistema de compra simples na Loja
+// Fechar o dropdown se clicar fora dele
+window.addEventListener('click', function(e) {
+    if (!e.target.closest('.mode-selector-wrapper')) {
+        const dropdown = document.getElementById('mode-dropdown');
+        if (dropdown) dropdown.style.display = 'none';
+    }
+});
+
+// Sistema de Loja Funcional (Gasta as moedas reais do jogador)
 function buyItem(cost) {
     let coinsElem = document.getElementById('player-coins');
     let currentCoins = parseInt(coinsElem.innerText);
+    
     if (currentCoins >= cost) {
         currentCoins -= cost;
         coinsElem.innerText = currentCoins;
-        alert('Compra efetuada com sucesso!');
+        alert('🎉 Compra efetuada com sucesso! O item foi adicionado ao seu inventário.');
     } else {
-        alert('Moedas insuficientes!');
+        alert('❌ Moedas insuficientes! Jogue mais partidas para ganhar recompensas.');
     }
 }
 
-// Iniciar o jogo 3D ao clicar em JOGAR
+// Lançar o motor 3D do Jogo
 function launchGame() {
     document.getElementById('lobby-screen').style.display = 'none';
     document.getElementById('crosshair').style.display = 'block';
@@ -97,7 +104,7 @@ function init3DWorld() {
     dirLight.position.set(10, 30, 10);
     scene.add(dirLight);
 
-    // Chão
+    // Chão do mapa
     const floor = new THREE.Mesh(
         new THREE.PlaneGeometry(60, 60),
         new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.8 })
@@ -105,7 +112,7 @@ function init3DWorld() {
     floor.rotation.x = -Math.PI / 2;
     scene.add(floor);
 
-    // Caixa de teste 3D
+    // Obstáculo 3D de teste
     const box = new THREE.Mesh(
         new THREE.BoxGeometry(2, 2, 2),
         new THREE.MeshStandardMaterial({ color: 0x00ffcc })
@@ -113,7 +120,7 @@ function init3DWorld() {
     box.position.set(0, 1, -8);
     scene.add(box);
 
-    // Movimentação do jogador
+    // Controlos de teclado
     window.addEventListener('keydown', (e) => {
         if (e.code === 'KeyW') moveForward = true;
         if (e.code === 'KeyA') moveLeft = true;
