@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tactical FPS - Battle Royale Lobby</title>
+    <title>Tactical FPS - Battle Pass Edition</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <!-- ECRÃ 2: LOBBY PRINCIPAL ESTILO FORTNITE -->
+    <!-- ECRÃ 2: LOBBY PRINCIPAL -->
     <div id="lobby-screen">
         <div class="top-nav">
             <div class="nav-tabs">
@@ -41,15 +41,11 @@
             <div class="currency-box">🪙 <span id="player-coins">3500</span></div>
         </div>
 
-        <!-- ABA: LOBBY (Idêntica à imagem de referência) -->
+        <!-- ABA: LOBBY -->
         <div id="content-lobby" class="tab-content active-content">
-            
-            <!-- Painel Esquerdo: Nível e Desafios Sugeridos -->
             <div class="lobby-left-panel">
                 <div class="lobby-level-box">
-                    <div class="level-header-row">
-                        <span class="level-title-badge">LEVEL 31</span>
-                    </div>
+                    <div class="level-header-row"><span class="level-title-badge">LEVEL 31</span></div>
                     <div class="level-exp-text">3,516 / 3,950</div>
                     <div class="progress-bar"><div class="progress-fill" style="width: 88%;"></div></div>
                     <div class="battle-pass-tier-row">
@@ -57,7 +53,6 @@
                         <span style="color: #ffcc00;">⭐ 3 / 10</span>
                     </div>
                 </div>
-
                 <div class="lobby-challenges-box">
                     <div class="challenges-title">SUGGESTED CHALLENGES</div>
                     <div class="challenge-item">
@@ -71,12 +66,10 @@
                 </div>
             </div>
 
-            <!-- Centro: Nome do Jogador no Lobby e Slots de Amigos (Party) -->
             <div class="lobby-center-podium">
                 <div class="party-member-tag">
                     <span style="color: #ffcc00;">👑</span> T-ree <span style="font-size:10px; color:#ef4444; display:block;">Not Ready</span>
                 </div>
-                <!-- Slots vazios da Party ao lado -->
                 <div class="party-slots-row">
                     <div class="party-slot"><span>+</span></div>
                     <div class="party-slot"><span>+</span></div>
@@ -85,7 +78,6 @@
                 <div class="xp-boost-badge">⚡ 70% XP Boost</div>
             </div>
 
-            <!-- Botão de Jogo e Seletor de Modo no Canto Inferior Direito -->
             <div class="play-section">
                 <div class="mode-selector-wrapper">
                     <div class="mode-selector-btn" onclick="toggleModeDropdown()">👤 <span id="current-mode-text">SOLO</span> ▾</div>
@@ -100,58 +92,156 @@
             </div>
         </div>
 
-        <!-- ABA: PASSE DE COMBATE -->
+        <!-- ABA: BATTLE PASS (Exatamente igual à imagem de referência) -->
         <div id="content-battlepass" class="tab-content">
-            <div class="bp-header-banner">
-                <div>
-                    <h2 style="margin:0; color:#fff; font-size: 20px;">SEASON 4 • PASSE DE BATALHA</h2>
-                    <span style="font-size: 12px; color: #9ca3af;">SEASON ENDS: 60 Days | PAGE 1 / 13</span>
-                </div>
-                <div class="bp-purchase-actions">
-                    <button class="bp-buy-btn primary" onclick="buyBattlePass(900)">ADQUIRIR PASSE 🪙 900</button>
-                    <button class="bp-buy-btn secondary" onclick="buyBattlePassBundle(2800)">PACOTÃO 25 TIERS 🪙 2800</button>
-                </div>
-            </div>
+            <div class="bp-main-wrapper">
+                
+                <!-- Grelha Central do Passe -->
+                <div class="bp-grid-container">
+                    
+                    <!-- Cabeçalho da Grelha com Tiers e Estrelas -->
+                    <div class="bp-grid-header">
+                        <div class="nav-arrow-btn">◀ L2</div>
+                        <div class="tier-box-main">
+                            <div class="tier-label-small">TIER</div>
+                            <div class="tier-num-large" id="current-tier-num">24</div>
+                        </div>
+                        <div class="tier-stars-status">
+                            <div style="font-size:11px; color:#fbbf24; font-weight:bold; margin-bottom:3px;">⭐ 8 / 10</div>
+                            <div class="progress-bar" style="width: 120px; height: 4px;"><div class="progress-fill" style="width: 80%;"></div></div>
+                        </div>
 
-            <div class="bp-grid-container">
-                <div class="bp-grid-header">
-                    <div class="tier-indicator">TIER <span id="current-tier-num">24</span></div>
-                    <div class="tier-cols">
-                        <div class="col-num">1</div><div class="col-num">2</div><div class="col-num">3</div><div class="col-num">4</div><div class="col-num">5</div><div class="col-num">6</div><div class="col-num">7</div>
+                        <div class="season-info-center">
+                            <div style="font-size: 15px; font-weight: 900; letter-spacing: 1px;">SEASON 4</div>
+                            <div style="font-size: 10px; color: #94a3b8;">SEASON ENDS: 60 Days</div>
+                        </div>
+
+                        <div class="page-indicator">PAGE 1 / 13</div>
+                        <div class="nav-arrow-btn right">R2 ▶</div>
+                    </div>
+
+                    <!-- Colunas de 1 a 7 com Cabeçalhos Numéricos -->
+                    <div class="bp-columns-header">
+                        <div class="col-num-tag">1</div>
+                        <div class="col-num-tag">2</div>
+                        <div class="col-num-tag">3</div>
+                        <div class="col-num-tag">4</div>
+                        <div class="col-num-tag">5</div>
+                        <div class="col-num-tag">6</div>
+                        <div class="col-num-tag">7</div>
+                    </div>
+
+                    <!-- Linhas de Recompensas (Free e Paid) -->
+                    <div class="bp-rows-body">
+                        
+                        <!-- Linha Free -->
+                        <div class="bp-row-line">
+                            <div class="row-tag-name">FREE</div>
+                            <div class="bp-item-slot unlocked" onclick="inspectItem('Banner Icon', 'Ícone de estandarte exclusivo da temporada.')">
+                                <span class="item-icon">🛡️</span>
+                                <div class="check-mark">✔</div>
+                            </div>
+                            <div class="bp-item-slot unlocked" onclick="inspectItem('Loading Screen', 'Ecrã de carregamento artístico.')">
+                                <span class="item-icon">🖼️</span>
+                                <div class="check-mark">✔</div>
+                            </div>
+                            <div class="bp-item-slot locked">
+                                <span class="item-icon">🔒</span>
+                            </div>
+                            <div class="bp-item-slot locked">
+                                <span class="item-icon">🔒</span>
+                            </div>
+                            <div class="bp-item-slot locked">
+                                <span class="item-icon">🔒</span>
+                            </div>
+                            <div class="bp-item-slot unlocked" onclick="inspectItem('Spray de Tinta', 'Spray decorativo para usar no mapa.')">
+                                <span class="item-icon">🎨</span>
+                                <div class="check-mark">✔</div>
+                            </div>
+                            <div class="bp-item-slot locked">
+                                <span class="item-icon">🔒</span>
+                            </div>
+                        </div>
+
+                        <!-- Linha Paid (Passe Pago) -->
+                        <div class="bp-row-line paid-line">
+                            <div class="row-tag-name paid-tag">PASTE</div>
+                            <div class="bp-item-slot premium unlocked" onclick="inspectItem('Emote Lendário', 'Animação de celebração épica.')">
+                                <span class="item-icon">⭐</span>
+                                <div class="check-mark">✔</div>
+                            </div>
+                            <div class="bp-item-slot premium unlocked stacked" onclick="inspectItem('Skin Carbide & Tool', 'Traje modular avançado do conjunto principal.')">
+                                <div class="mini-stack">
+                                    <span>👤</span>
+                                    <span>🛡️</span>
+                                </div>
+                                <div class="check-mark">✔</div>
+                            </div>
+                            <div class="bp-item-slot premium unlocked stacked" onclick="inspectItem('Skin Special', 'Variação tática de operador.')">
+                                <div class="mini-stack">
+                                    <span>👤</span>
+                                    <span>📖</span>
+                                </div>
+                                <div class="check-mark">✔</div>
+                            </div>
+                            <div class="bp-item-slot premium unlocked stacked" onclick="inspectItem('Boost Pack 10%', 'Aumento acelerado de pontos de experiência.')">
+                                <div class="mini-stack">
+                                    <span style="font-size:10px; color:#4ade80; font-weight:bold;">XP+10</span>
+                                    <span>⭐</span>
+                                </div>
+                                <div class="check-mark">✔</div>
+                            </div>
+                            <div class="bp-item-slot premium unlocked stacked" onclick="inspectItem('V-Bucks 100', 'Moeda premium utilizada para itens na loja.')">
+                                <div class="mini-stack">
+                                    <span style="font-color:#ffcc00;">🪙 100</span>
+                                    <span>⚙️</span>
+                                </div>
+                                <div class="check-mark">✔</div>
+                            </div>
+                            <div class="bp-item-slot premium unlocked" onclick="inspectItem('Emote Divertido', 'Gesto expressivo de vitória.')">
+                                <span class="item-icon">🔥</span>
+                                <div class="check-mark">✔</div>
+                            </div>
+                            <!-- Item em destaque selecionado (Gale Force) -->
+                            <div class="bp-item-slot premium unlocked item-selected" onclick="inspectItem('GALE FORCE', 'Rise above the storm.<br>Part of the Valiant set.')">
+                                <span class="item-icon">⚔️</span>
+                                <div class="check-mark">✔</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Rodapé da Grelha: Comprar Tier -->
+                    <div class="bp-grid-footer" onclick="buyBattlePass(150)">
+                        <div class="footer-icon-btn">🛒</div>
+                        <div class="footer-text-info">
+                            <div style="font-weight: 900; font-size: 11px; color: #fff;">PURCHASE TIER</div>
+                            <div style="font-size: 9px; color: #94a3b8;">Get Tier 25 rewards now! Your current progress will be applied to the next tier.</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Painel Lateral Direito (Visualizador do Item Selecionado) -->
+                <div class="bp-inspect-sidebar">
+                    <div class="inspect-item-3d-preview">
+                        <div class="preview-weapon-icon">⚔️</div>
+                    </div>
+                    <div class="inspect-details-box">
+                        <div class="inspect-category-tag">HARVESTING TOOL</div>
+                        <div class="inspect-title" id="inspect-name">GALE FORCE</div>
+                        <div class="inspect-desc" id="inspect-desc">Rise above the storm.<br>Part of the Valiant set.</div>
                     </div>
                 </div>
 
-                <div class="bp-grid-body">
-                    <div class="bp-row free-row">
-                        <div class="row-label">FREE</div>
-                        <div class="bp-slot unlocked">⭐</div><div class="bp-slot unlocked">🎁</div><div class="bp-slot locked">🔒</div><div class="bp-slot locked">🔒</div><div class="bp-slot locked">🔒</div><div class="bp-slot unlocked">🎨</div><div class="bp-slot locked">🔒</div>
-                    </div>
-                    <div class="bp-row premium-row">
-                        <div class="row-label premium-label">PASTE</div>
-                        <div class="bp-slot premium unlocked">🛡️</div><div class="bp-slot premium unlocked">👤</div><div class="bp-slot premium unlocked">👤</div><div class="bp-slot premium unlocked">⭐</div><div class="bp-slot premium unlocked">🪙</div><div class="bp-slot premium unlocked">🔥</div><div class="bp-slot premium unlocked item-selected" onclick="inspectItem('Gale Force', 'Ferramenta de Coleta Épica.<br>Parte do conjunto Valente.')">⚔️</div>
-                    </div>
-                </div>
-
-                <div class="bp-inspect-panel">
-                    <div class="inspect-title" id="inspect-name">GALE FORCE</div>
-                    <div class="inspect-desc" id="inspect-desc">Ferramenta de Coleta Épica.<br>Parte do conjunto Valente.</div>
-                </div>
             </div>
         </div>
 
         <!-- OUTRAS ABAS -->
-        <div id="content-missions" class="tab-content"><div class="panel-box"><h2>CHALLENGES</h2><p>Missões diárias e semanais ativas.</p></div></div>
-        <div id="content-arsenal" class="tab-content"><div class="panel-box"><h2>LOCKER</h2><p>Personalize as suas skins e armas.</p></div></div>
-        <div id="content-shop" class="tab-content">
-            <div class="panel-box">
-                <h2>ITEM SHOP</h2>
-                <div class="shop-grid">
-                    <div class="shop-item"><span>Skin Neon Vandal</span><button onclick="buyItem(1200)">🪙 1200</button></div>
-                    <div class="shop-item"><span>Chaveiro de Arma</span><button onclick="buyItem(300)">🪙 300</button></div>
-                </div>
-            </div>
-        </div>
-        <div id="content-career" class="tab-content"><div class="panel-box"><h2>CAREER</h2><p>Estatísticas de desempenho e perfil.</p></div></div>
+        <div id="content-missions" class="tab-content"><div class="panel-box"><h2>CHALLENGES</h2><p>Missões diárias e semanais.</p></div></div>
+        <div id="content-arsenal" class="tab-content"><div class="panel-box"><h2>LOCKER</h2><p>Gerencie o seu inventário.</p></div></div>
+        <div id="content-shop" class="tab-content"><div class="panel-box"><h2>ITEM SHOP</h2><p>Loja de itens diária.</p></div></div>
+        <div id="content-career" class="tab-content"><div class="panel-box"><h2>CAREER</h2><p>Estatísticas gerais.</p></div></div>
     </div>
 
     <div id="crosshair"></div>
