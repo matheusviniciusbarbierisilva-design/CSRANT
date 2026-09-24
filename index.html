@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tactical FPS - Classic Edition</title>
+    <title>Tactical FPS - Full Lobby</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ECRÃ 1: SELEÇÃO DE MODOS -->
+    <!-- ECRÃ 1: SELEÇÃO DE MODOS DE ENTRADA -->
     <div id="mode-select-screen">
         <div class="mode-title">SELECIONAR O MODO DE JOGO</div>
         <div class="mode-container">
@@ -27,44 +27,123 @@
         </div>
     </div>
 
-    <!-- ECRÃ 2: LOBBY PRINCIPAL -->
+    <!-- ECRÃ 2: LOBBY PRINCIPAL INTERATIVO -->
     <div id="lobby-screen">
         <div class="top-nav">
             <div class="nav-tabs">
-                <div class="tab active">LOBBY</div>
-                <div class="tab">PASSE DE COMBATE</div>
-                <div class="tab">MISSÕES</div>
-                <div class="tab">ARSENAL</div>
-                <div class="tab">LOJA</div>
-                <div class="tab">CARREIRA</div>
+                <div class="tab active" onclick="switchTab('lobby', event)">LOBBY</div>
+                <div class="tab" onclick="switchTab('battlepass', event)">PASSE DE COMBATE</div>
+                <div class="tab" onclick="switchTab('missions', event)">MISSÕES</div>
+                <div class="tab" onclick="switchTab('arsenal', event)">ARSENAL</div>
+                <div class="tab" onclick="switchTab('shop', event)">LOJA</div>
+                <div class="tab" onclick="switchTab('career', event)">CARREIRA</div>
             </div>
-            <div class="currency-box">🪙 400</div>
+            <div class="currency-box">🪙 <span id="player-coins">400</span></div>
         </div>
 
-        <div class="level-panel">
-            <div class="level-header">
-                <span>NÍVEL 31</span>
-                <span style="color: #00ffcc;">⭐️ 2</span>
+        <!-- CONTEÚDO DA ABA: LOBBY (Padrão) -->
+        <div id="content-lobby" class="tab-content active-content">
+            <div class="level-panel">
+                <div class="level-header">
+                    <span>NÍVEL 31</span>
+                    <span style="color: #00ffcc;">⭐️ 2</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill"></div></div>
+                <div style="font-size: 11px; color: #8b949e;">3,516 / 3,950 XP</div>
+                <div class="battle-pass-tier">
+                    <span>PASSE - TIER 29</span>
+                    <span style="color: #ffcc00;">3 / 10 ⭐️</span>
+                </div>
             </div>
-            <div class="progress-bar"><div class="progress-fill"></div></div>
-            <div style="font-size: 11px; color: #8b949e;">3,516 / 3,950 XP</div>
-            
-            <div class="battle-pass-tier">
-                <span>PASSE - TIER 29</span>
-                <span style="color: #ffcc00;">3 / 10 ⭐️</span>
+
+            <div class="play-section">
+                <!-- Seletor de Modo de Equipa (1v1 a 5v5) -->
+                <div class="mode-selector-wrapper">
+                    <div class="mode-selector-btn" onclick="toggleModeDropdown()">SOLO • <span id="current-mode-text">TÁTICO 5V5</span> ▾</div>
+                    <div id="mode-dropdown" class="dropdown-menu">
+                        <div onclick="setGameMode('1v1')">SOLO • 1v1 DUELO</div>
+                        <div onclick="setGameMode('2v2')">DUPLA • 2v2</div>
+                        <div onclick="setGameMode('3v3')">TETO • 3v3</div>
+                        <div onclick="setGameMode('4v4')">EQUIPA • 4v4</div>
+                        <div onclick="setGameMode('5v5')">TÁTICO • 5v5</div>
+                    </div>
+                </div>
+                <button class="play-btn" onclick="launchGame()">JOGAR</button>
             </div>
         </div>
 
-        <div class="play-section">
-            <div class="mode-selector-btn">SOLO • TÁTICO</div>
-            <button class="play-btn" id="play-match-btn" onclick="launchGame()">JOGAR</button>
+        <!-- CONTEÚDO DA ABA: PASSE DE COMBATE -->
+        <div id="content-battlepass" class="tab-content">
+            <div class="panel-box">
+                <h2>PASSE DE COMBATE - TEMPORADA 1</h2>
+                <p>Evolua o seu passe completando missões e ganhe recompensas exclusivas.</p>
+                <div class="bp-grid">
+                    <div class="bp-item unlocked">Tier 1 (Reclamado)</div>
+                    <div class="bp-item unlocked">Tier 2 (Reclamado)</div>
+                    <div class="bp-item current">Tier 3 (Atual)</div>
+                    <div class="bp-item locked">Tier 4 (Bloqueado)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTEÚDO DA ABA: MISSÕES -->
+        <div id="content-missions" class="tab-content">
+            <div class="panel-box">
+                <h2>MISSÕES DIÁRIAS E SEMANAIS</h2>
+                <ul class="mission-list">
+                    <li>🎯 Eliminar 15 inimigos na Zona de Treino — <span>500 XP (Completo)</span></li>
+                    <li>🔥 Vencer 3 partidas no modo Tático — <span>1200 XP (Progresso: 1/3)</span></li>
+                    <li>⚡ Desferir 5 tiros na cabeça — <span>300 XP (Por fazer)</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CONTEÚDO DA ABA: ARSENAL -->
+                    <div id="content-arsenal" class="tab-content">
+            <div class="panel-box">
+                <h2>O SEU ARSENAL DE ARMAS</h2>
+                <div class="arsenal-grid">
+                    <div class="weapon-card selected">Rifle de Assalto (Equipado)</div>
+                    <div class="weapon-card">Submetralhadora SMG</div>
+                    <div class="weapon-card">Sniper de Precisão</div>
+                    <div class="weapon-card">Escopeta Tática</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTEÚDO DA ABA: LOJA -->
+        <div id="content-shop" class="tab-content">
+            <div class="panel-box">
+                <h2>LOJA DE ITENS</h2>
+                <div class="shop-grid">
+                    <div class="shop-item">
+                        <span>Skin Neon Vandal</span>
+                        <button onclick="buyItem(1200)">🪙 1200</button>
+                    </div>
+                    <div class="shop-item">
+                        <span>Chaveiro de Arma</span>
+                        <button onclick="buyItem(300)">🪙 300</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTEÚDO DA ABA: CARREIRA -->
+        <div id="content-career" class="tab-content">
+            <div class="panel-box">
+                <h2>ESTATÍSTICAS DE CARREIRA</h2>
+                <div class="stats-grid">
+                    <div>Partidas Jogadas: <b>142</b></div>
+                    <div>Taxa de Vitórias: <b>64%</b></div>
+                    <div>Precisão de Tiro: <b>38.5%</b></div>
+                    <div>Eliminações Totais: <b>1,890</b></div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- MIRA DO JOGO -->
     <div id="crosshair"></div>
 
-    <!-- BIBLIOTECAS EXTERNAS (Three.js estável) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/PointerLockControls.js"></script>
     <script src="game.js"></script>
