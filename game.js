@@ -5,7 +5,7 @@ let velocity = new THREE.Vector3();
 let direction = new THREE.Vector3();
 let prevTime = performance.now();
 
-// Configuração do Passe de Batalha (100 Tiers / 7 Tiers por Página = ~15 Páginas)
+// Controlo dos 100 Tiers e Páginas
 let currentTier = 24;
 let currentPage = 4;
 const totalTiers = 100;
@@ -65,7 +65,7 @@ window.addEventListener('click', function(e) {
     }
 });
 
-// Renderizador Dinâmico dos 100 Níveis do Passe de Batalha
+// Renderização dinâmica das páginas (até ao nível 100)
 function renderBattlePassPage() {
     document.getElementById('current-tier-num').innerText = currentTier;
     document.getElementById('lobby-tier-display').innerText = currentTier;
@@ -81,7 +81,6 @@ function renderBattlePassPage() {
     const startTierIndex = (currentPage - 1) * tiersPerPage + 1;
 
     const rewardIcons = ['🛡️', '🖼️', '⭐', '🪙', '🔥', '⚔️', '🎨', '👤', '🎁', '⚡'];
-    const rewardNames = ['Estandarte Tático', 'Ecrã de Carregamento', 'Emote Exclusivo', '100 V-Bucks', 'Gesto Especial', 'Ferramenta de Coleta', 'Spray Artístico', 'Traje de Operador'];
 
     for (let i = 0; i < tiersPerPage; i++) {
         let tierNumber = startTierIndex + i;
@@ -96,14 +95,14 @@ function renderBattlePassPage() {
         let namePaidItem = `Recompensa Premium Tier ${tierNumber}`;
 
         freeRowHTML += `
-            <div class="bp-item-slot ${isUnlocked ? 'unlocked' : 'locked'}" onclick="inspectItem('${nameFreeItem}', 'Recompensa gratuita do nível ${tierNumber}.')">
+            <div class="bp-item-slot ${isUnlocked ? 'unlocked' : 'locked'}" onclick="inspectItem('${nameFreeItem}', 'Recompensa gratuita correspondente ao tier ${tierNumber}.')">
                 <span class="item-icon">${iconFree}</span>
                 ${isUnlocked ? '<div class="check-mark">✔</div>' : ''}
             </div>
         `;
 
         paidRowHTML += `
-            <div class="bp-item-slot premium ${isUnlocked ? 'unlocked item-selected' : 'locked'}" onclick="inspectItem('${namePaidItem}', 'Recompensa exclusiva do Passe Pago Tier ${tierNumber}.')">
+            <div class="bp-item-slot premium ${isUnlocked ? 'unlocked item-selected' : 'locked'}" onclick="inspectItem('${namePaidItem}', 'Recompensa exclusiva do Passe Pago para o Tier ${tierNumber}.')">
                 <span class="item-icon">${iconPaid}</span>
                 ${isUnlocked ? '<div class="check-mark">✔</div>' : ''}
             </div>
@@ -134,10 +133,9 @@ function buyBattlePassTier() {
             coinsElem.innerText = currentCoins;
             currentTier++;
             
-            // Ajusta a página automaticamente se necessário
             currentPage = Math.ceil(currentTier / tiersPerPage);
             renderBattlePassPage();
-            alert(`🎉 Subiu para o Tier ${currentTier} com sucesso!`);
+            alert(`🎉 Subiu com sucesso para o Tier ${currentTier}!`);
         } else {
             alert('🏆 Já atingiu o nível máximo (100) do Passe de Batalha!');
         }
