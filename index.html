@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tactical FPS - Battle Pass 100 Tiers</title>
+    <title>Tactical FPS - Locker & Battle Pass</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -32,93 +32,108 @@
         <div class="top-nav">
             <div class="nav-tabs">
                 <div class="tab" onclick="switchTab('lobby', event)">LOBBY</div>
-                <div class="tab active" onclick="switchTab('battlepass', event)">BATTLE PASS</div>
+                <div class="tab" onclick="switchTab('battlepass', event)">BATTLE PASS</div>
                 <div class="tab" onclick="switchTab('missions', event)">CHALLENGES</div>
-                <div class="tab" onclick="switchTab('arsenal', event)">LOCKER</div>
+                <div class="tab active" onclick="switchTab('arsenal', event)">LOCKER</div>
                 <div class="tab" onclick="switchTab('shop', event)">ITEM SHOP</div>
                 <div class="tab" onclick="switchTab('career', event)">CAREER</div>
                 <div class="tab" onclick="switchTab('store', event)">STORE</div>
             </div>
             <div style="display: flex; gap: 10px; align-items: center;">
                 <div class="currency-box">🪙 <span id="player-coins">600</span></div>
-                <div class="currency-box" style="border-color: #3b82f6;">👥 <span id="player-friends">0</span></div>
             </div>
         </div>
 
         <!-- ABA: LOBBY -->
         <div id="content-lobby" class="tab-content">
-            <div class="lobby-left-panel">
-                <div class="lobby-level-box">
-                    <div class="level-header-row"><span class="level-title-badge">LEVEL 31</span></div>
-                    <div class="level-exp-text">3,516 / 3,950</div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 88%;"></div></div>
-                    <div class="battle-pass-tier-row">
-                        <span>BATTLE PASS TIER <span id="lobby-tier-display">24</span> / 100</span>
-                        <span style="color: #ffcc00;">⭐ 8 / 10</span>
-                    </div>
-                </div>
-            </div>
-            <div class="play-section">
-                <button class="play-btn" onclick="launchGame()">PLAY</button>
-            </div>
+            <div class="play-section"><button class="play-btn" onclick="launchGame()">PLAY</button></div>
         </div>
 
-        <!-- ABA: BATTLE PASS (Exatamente 13 Páginas e Recompensas da Imagem) -->
-        <div id="content-battlepass" class="tab-content active-content">
+        <!-- ABA: BATTLE PASS (13 Páginas / 100 Tiers) -->
+        <div id="content-battlepass" class="tab-content">
             <div class="bp-main-wrapper">
-                
                 <div class="bp-grid-container">
-                    
-                    <!-- Cabeçalho com Setas L2 / R2 Exatas da Imagem -->
                     <div class="bp-grid-header">
                         <div class="nav-arrow-btn" onclick="changePage(-1)">L2 ◀</div>
-                        
                         <div class="tier-box-main">
                             <div class="tier-label-small">TIER</div>
                             <div class="tier-num-large" id="current-tier-num">24</div>
                         </div>
-                        
                         <div class="tier-stars-status">
-                            <div style="font-size:11px; color:#fbbf24; font-weight:bold; margin-bottom:3px;">⭐ 8 / 10</div>
-                            <div class="progress-bar" style="width: 100px; height: 4px;"><div class="progress-fill" style="width: 80%;"></div></div>
+                            <div style="font-size:11px; color:#fbbf24; font-weight:bold;">⭐ 8 / 10</div>
                         </div>
-
                         <div class="season-info-center">
-                            <div style="font-size: 13px; font-weight: 900; letter-spacing: 1px;">SEASON 4</div>
-                            <div style="font-size: 9px; color: #94a3b8;">SEASON ENDS: 60 Days</div>
+                            <div style="font-size: 13px; font-weight: 900;">SEASON 4</div>
                         </div>
-
                         <div class="page-indicator" id="page-indicator-text">PAGE 1 / 13</div>
-                        
                         <div class="nav-arrow-btn right" onclick="changePage(1)">▶ R2</div>
                     </div>
-
-                    <!-- Números das Colunas Dinâmicos (7 colunas por página) -->
                     <div class="bp-columns-header" id="bp-cols-header"></div>
-
-                    <!-- Linhas de Recompensas -->
                     <div class="bp-rows-body" id="bp-rows-container"></div>
-
-                    <!-- Rodapé de Compra idêntico ao jogo -->
                     <div class="bp-grid-footer" onclick="buyBattlePassTier()">
                         <div class="footer-icon-btn">🛒</div>
                         <div class="footer-text-info">
                             <div style="font-weight: 900; font-size: 11px; color: #fff;">PURCHASE TIER</div>
-                            <div style="font-size: 9px; color: #94a3b8;">Get Tier <span id="next-tier-target">25</span> rewards now! Your current progress will be applied to the next tier.</div>
                         </div>
                     </div>
-
                 </div>
-
-                <!-- Painel Lateral de Inspeção ("Gale Force") -->
                 <div class="bp-inspect-sidebar">
-                    <div class="inspect-item-3d-preview">
-                        <div class="preview-weapon-icon" id="inspect-icon-display">⚔️</div>
-                    </div>
+                    <div class="inspect-item-3d-preview"><div class="preview-weapon-icon" id="inspect-icon-display">⚔️</div></div>
                     <div class="inspect-details-box">
                         <div class="inspect-category-tag" id="inspect-category">HARVESTING TOOL</div>
                         <div class="inspect-title" id="inspect-name">GALE FORCE</div>
-                        <div class="inspect-desc" id="inspect-desc">Rise above the storm.<br>Part of the Valiant set.</div>
+                        <div class="inspect-desc" id="inspect-desc">Rise above the storm.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABA: LOCKER (Estilo Exato da Imagem Fornecida) -->
+        <div id="content-arsenal" class="tab-content active-content">
+            <div class="locker-main-wrapper">
+                
+                <!-- Lado Esquerdo: Grelha de Seleção -->
+                <div class="locker-left-section">
+                    <div class="locker-header-bar">
+                        <span class="locker-selecting-title">SELECTING</span>
+                        <span class="locker-category-name">OUTFIT</span>
+                        <span class="locker-shirt-icon">👕</span>
+                    </div>
+
+                    <div class="locker-filter-bar">
+                        <span class="filter-text">FILTER - ALL</span>
+                        <div class="locker-top-nav-icons">
+                            <span class="l-ico">L2</span>
+                            <span class="l-ico icon-circle">∞</span>
+                            <span class="l-ico">!</span>
+                            <span class="l-ico">🛡️</span>
+                            <span class="l-ico">⚙️</span>
+                            <span class="l-ico">🌐</span>
+                            <span class="l-ico">R2</span>
+                        </div>
+                    </div>
+
+                    <!-- Grelha de Itens com Tags de Temporada (Como na imagem) -->
+                    <div class="locker-grid" id="locker-grid-container">
+                        <!-- Preenchido via JavaScript -->
+                    </div>
+
+                    <!-- Botões Inferiores do Locker -->
+                    <div class="locker-footer-actions">
+                        <button class="locker-action-btn">⬛ EDIT STYLE</button>
+                        <button class="locker-action-btn primary">❌ SAVE AND EXIT</button>
+                    </div>
+                </div>
+
+                <!-- Lado Direito: Pré-visualização 3D e Detalhes da Skin ("The Visitor") -->
+                <div class="locker-right-sidebar">
+                    <div class="locker-preview-viewport">
+                        <div class="locker-character-avatar" id="locker-preview-avatar">🤖</div>
+                    </div>
+                    <div class="locker-item-info-card">
+                        <div class="locker-item-rarity" id="locker-item-rarity">LEGENDARY | OUTFIT</div>
+                        <div class="locker-item-title" id="locker-item-title">THE VISITOR</div>
+                        <div class="locker-item-desc" id="locker-item-desc">Intentions unknown.<br><span style="color: #60a5fa;">[Selectable Styles]</span></div>
                     </div>
                 </div>
 
@@ -127,7 +142,6 @@
 
         <!-- OUTRAS ABAS -->
         <div id="content-missions" class="tab-content"><div class="panel-box"><h2>CHALLENGES</h2></div></div>
-        <div id="content-arsenal" class="tab-content"><div class="panel-box"><h2>LOCKER</h2></div></div>
         <div id="content-shop" class="tab-content"><div class="panel-box"><h2>ITEM SHOP</h2></div></div>
         <div id="content-career" class="tab-content"><div class="panel-box"><h2>CAREER</h2></div></div>
         <div id="content-store" class="tab-content"><div class="panel-box"><h2>STORE</h2></div></div>
