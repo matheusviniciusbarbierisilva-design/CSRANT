@@ -5,13 +5,11 @@ let velocity = new THREE.Vector3();
 let direction = new THREE.Vector3();
 let prevTime = performance.now();
 
-// Transição do ecrã de seleção inicial para o lobby
 function startLobby() {
     document.getElementById('mode-select-screen').style.display = 'none';
     document.getElementById('lobby-screen').style.display = 'block';
 }
 
-// Sistema de abas do Lobby totalmente funcional
 function switchTab(tabName, event) {
     const contents = document.querySelectorAll('.tab-content');
     contents.forEach(c => c.classList.remove('active-content'));
@@ -19,7 +17,6 @@ function switchTab(tabName, event) {
     const tabs = document.querySelectorAll('.nav-tabs .tab');
     tabs.forEach(t => t.classList.remove('active'));
 
-    // Mapeamento correto dos conteúdos
     if (tabName === 'lobby') {
         document.getElementById('content-lobby').classList.add('active-content');
     } else if (tabName === 'battlepass') {
@@ -39,19 +36,16 @@ function switchTab(tabName, event) {
     }
 }
 
-// Fechar ou abrir o menu dropdown de modos (1v1, 2v2, etc.)
 function toggleModeDropdown() {
     const dropdown = document.getElementById('mode-dropdown');
     dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
 }
 
-// Mudar o texto do modo de jogo e fechar o menu
 function setGameMode(mode) {
     document.getElementById('current-mode-text').innerText = mode;
     document.getElementById('mode-dropdown').style.display = 'none';
 }
 
-// Fechar o dropdown se clicar fora dele
 window.addEventListener('click', function(e) {
     if (!e.target.closest('.mode-selector-wrapper')) {
         const dropdown = document.getElementById('mode-dropdown');
@@ -59,7 +53,46 @@ window.addEventListener('click', function(e) {
     }
 });
 
-// Sistema de Loja Funcional (Gasta as moedas reais do jogador)
+// Comprar Passe de Batalha (900 moedas)
+function buyBattlePass(cost) {
+    let coinsElem = document.getElementById('player-coins');
+    let currentCoins = parseInt(coinsElem.innerText);
+
+    if (currentCoins >= cost) {
+        currentCoins -= cost;
+        coinsElem.innerText = currentCoins;
+        alert('🎉 Parabéns! Adquiriu o Passe de Batalha com sucesso por 900 moedas[cite: 11]!');
+        
+        const lockedSlots = document.querySelectorAll('.bp-slot.locked');
+        lockedSlots.forEach(slot => {
+            slot.classList.remove('locked');
+            slot.classList.add('unlocked');
+            slot.innerText = '⭐';
+        });
+    } else {
+        alert('❌ Moedas insuficientes! Precisa de 900 moedas para comprar o passe[cite: 11].');
+    }
+}
+
+// Comprar Pacotão 25 Categorias (2800 moedas)
+function buyBattlePassBundle(cost) {
+    let coinsElem = document.getElementById('player-coins');
+    let currentCoins = parseInt(coinsElem.innerText);
+
+    if (currentCoins >= cost) {
+        currentCoins -= cost;
+        coinsElem.innerText = currentCoins;
+        
+        let tierNumElem = document.getElementById('current-tier-num');
+        let newTier = parseInt(tierNumElem.innerText) + 25;
+        tierNumElem.innerText = newTier;
+
+        alert('🚀 Pacotão de 25 categorias adquirido com sucesso por 2800 moedas[cite: 11]!');
+    } else {
+        alert('❌ Moedas insuficientes! O pacotão de 25 tiers custa 2800 moedas[cite: 11].');
+    }
+}
+
 function buyItem(cost) {
     let coinsElem = document.getElementById('player-coins');
     let currentCoins = parseInt(coinsElem.innerText);
@@ -67,13 +100,17 @@ function buyItem(cost) {
     if (currentCoins >= cost) {
         currentCoins -= cost;
         coinsElem.innerText = currentCoins;
-        alert('🎉 Compra efetuada com sucesso! O item foi adicionado ao seu inventário.');
+        alert('🎉 Compra efetuada com sucesso!');
     } else {
-        alert('❌ Moedas insuficientes! Jogue mais partidas para ganhar recompensas.');
+        alert('❌ Moedas insuficientes!');
     }
 }
 
-// Lançar o motor 3D do Jogo
+function inspectItem(itemName, itemDescription) {
+    document.getElementById('inspect-name').innerText = itemName;
+    document.getElementById('inspect-desc').innerHTML = itemDescription;
+}
+
 function launchGame() {
     document.getElementById('lobby-screen').style.display = 'none';
     document.getElementById('crosshair').style.display = 'block';
@@ -98,13 +135,11 @@ function init3DWorld() {
     controls.lock();
     scene.add(controls.getObject());
 
-    // Iluminação
     scene.add(new THREE.AmbientLight(0xffffff, 0.8));
     const dirLight = new THREE.DirectionalLight(0xffffff, 1.0);
     dirLight.position.set(10, 30, 10);
     scene.add(dirLight);
 
-    // Chão do mapa
     const floor = new THREE.Mesh(
         new THREE.PlaneGeometry(60, 60),
         new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.8 })
@@ -112,7 +147,6 @@ function init3DWorld() {
     floor.rotation.x = -Math.PI / 2;
     scene.add(floor);
 
-    // Obstáculo 3D de teste
     const box = new THREE.Mesh(
         new THREE.BoxGeometry(2, 2, 2),
         new THREE.MeshStandardMaterial({ color: 0x00ffcc })
@@ -120,7 +154,6 @@ function init3DWorld() {
     box.position.set(0, 1, -8);
     scene.add(box);
 
-    // Controlos de teclado
     window.addEventListener('keydown', (e) => {
         if (e.code === 'KeyW') moveForward = true;
         if (e.code === 'KeyA') moveLeft = true;
