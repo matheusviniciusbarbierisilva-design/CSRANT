@@ -46,112 +46,135 @@ body {
 }
 .tab-content.active-content { display: block; }
 
-/* LOBBY */
-.lobby-left-panel { position: absolute; top: 20px; left: 20px; width: 260px; }
-.lobby-level-box {
-    background: rgba(11, 19, 36, 0.85); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 12px; color: #fff;
-}
-.level-title-badge { font-weight: 900; font-size: 14px; letter-spacing: 1px; }
-.level-exp-text { font-size: 10px; color: #9ca3af; margin-bottom: 4px; }
-.progress-bar { width: 100%; height: 5px; background: rgba(0,0,0,0.5); border-radius: 3px; overflow: hidden; margin-bottom: 6px; }
-.progress-fill { height: 100%; background: #3b82f6; }
-.battle-pass-tier-row { font-size: 10px; font-weight: bold; color: #cbd5e1; display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 5px; }
-
 .play-section { position: absolute; bottom: 20px; right: 20px; }
 .play-btn {
     background: #ffcc00; color: #000; border: none; font-size: 20px; font-weight: 900; padding: 10px 40px; border-radius: 4px; cursor: pointer; box-shadow: 0 0 15px rgba(255, 204, 0, 0.4); letter-spacing: 1px;
 }
 .play-btn:hover { background: #ffde59; transform: scale(1.02); }
 
-
-/* BATTLE PASS (ESTILO EXATO DA IMAGEM COM 13 PÁGINAS) */
-#content-battlepass {
-    background: linear-gradient(135deg, #1b365d 0%, #080e1a 100%) !important;
+/* ==========================================================
+   ESTILO DO LOCKER (BASEADO NA IMAGEM FORNECIDA)
+   ================================================---------- */
+#content-arsenal {
+    background: radial-gradient(circle at center, #1b365d 0%, #060b14 100%) !important;
     display: flex; justify-content: center; align-items: center;
 }
 
-.bp-main-wrapper {
-    display: flex; gap: 15px; width: 100%; max-width: 1150px; height: 460px; align-items: flex-start;
+.locker-main-wrapper {
+    display: flex; gap: 20px; width: 100%; max-width: 1200px; height: 520px; align-items: flex-start;
 }
 
-.bp-grid-container {
-    flex: 3.2; background: rgba(13, 22, 39, 0.95); border: 2px solid #1d4ed8; border-radius: 6px;
-    display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+/* Esquerda: Grelha do Locker */
+.locker-left-section {
+    flex: 2.3; background: rgba(11, 18, 32, 0.92); border: 2px solid #1e3a8a; border-radius: 8px;
+    padding: 15px; display: flex; flex-direction: column; box-shadow: 0 15px 35px rgba(0,0,0,0.7);
 }
 
-.bp-grid-header {
-    background: #172554; display: flex; align-items: center; padding: 6px 10px; border-bottom: 2px solid #1e3a8a; justify-content: space-between;
+.locker-header-bar {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+}
+.locker-selecting-title { color: #93c5fd; font-size: 14px; font-weight: 900; letter-spacing: 1px; }
+.locker-category-name { color: #fff; font-size: 16px; font-weight: 900; letter-spacing: 1px; }
+.locker-shirt-icon { background: #ffffff; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+
+.locker-filter-bar {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;
+}
+.filter-text { color: #94a3b8; font-size: 10px; font-weight: bold; letter-spacing: 1px; }
+.locker-top-nav-icons { display: flex; gap: 6px; align-items: center; }
+.l-ico { background: #1e293b; color: #cbd5e1; font-size: 9px; font-weight: bold; padding: 2px 6px; border-radius: 3px; border: 1px solid #334155; }
+.icon-circle { background: #2563eb; color: #fff; border-radius: 50%; width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; }
+
+/* Grelha de Itens estendida */
+.locker-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; max-height: 330px; overflow-y: auto; padding-right: 4px;
+}
+.locker-grid::-webkit-scrollbar { width: 5px; }
+.locker-grid::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 3px; }
+
+.locker-slot {
+    background: #111c33; border: 2px solid #27354f; height: 70px; border-radius: 4px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; cursor: pointer; transition: all 0.15s;
+}
+.locker-slot:hover { border-color: #3b82f6; transform: scale(1.03); }
+.locker-slot.selected { border-color: #facc15; box-shadow: 0 0 12px rgba(250, 204, 21, 0.6); }
+
+.locker-slot-icon { font-size: 24px; }
+.locker-season-badge {
+    position: absolute; bottom: 3px; left: 4px; color: #fff; font-size: 11px; font-weight: 900; text-shadow: 1px 1px 2px #000;
+}
+.locker-favorite-star {
+    position: absolute; top: 3px; right: 3px; color: #facc15; font-size: 9px;
 }
 
-.nav-arrow-btn {
-    background: #0f172a; color: #94a3b8; font-size: 11px; font-weight: 900; padding: 6px 12px; border-radius: 4px; border: 1px solid #334155; cursor: pointer; transition: all 0.2s;
+/* Botões Inferiores do Locker */
+.locker-footer-actions {
+    display: flex; gap: 10px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;
 }
-.nav-arrow-btn:hover { color: #fff; border-color: #3b82f6; background: #1e293b; }
+.locker-action-btn {
+    background: #1e293b; color: #fff; border: 1px solid #334155; padding: 6px 14px; border-radius: 4px; font-size: 10px; font-weight: 900; cursor: pointer; letter-spacing: 1px;
+}
+.locker-action-btn.primary { background: #2563eb; border-color: #3b82f6; }
+.locker-action-btn:hover { background: #334155; }
 
+/* Direita: Painel de Informação e Pré-visualização 3D */
+.locker-right-sidebar {
+    flex: 1.4; background: linear-gradient(180deg, #111e38 0%, #070c18 100%);
+    border: 2px solid #1e3a8a; border-radius: 8px; display: flex; flex-direction: column; overflow: hidden; height: 100%; box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+}
+.locker-preview-viewport {
+    flex: 2; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, rgba(37,99,235,0.2) 0%, transparent 75%); position: relative;
+}
+.locker-character-avatar {
+    font-size: 75px; filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.7)); animation: floatAnimLocker 3s ease-in-out infinite;
+}
+@keyframes floatAnimLocker {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.locker-item-info-card {
+    background: #121c33; border-top: 2px solid #b45309; padding: 15px; display: flex; flex-direction: column; gap: 4px;
+}
+.locker-locker-rarity { font-size: 9px; font-weight: 900; color: #f59e0b; letter-spacing: 1px; }
+.locker-item-rarity { font-size: 9px; font-weight: 900; color: #f59e0b; letter-spacing: 1px; }
+.locker-item-title { color: #fff; font-size: 18px; font-weight: 900; letter-spacing: 1px; }
+.locker-item-desc { color: #94a3b8; font-size: 11px; line-height: 1.4; }
+
+/* BATTLE PASS (Mantido Integrado) */
+#content-battlepass { background: linear-gradient(135deg, #1b365d 0%, #080e1a 100%) !important; display: flex; justify-content: center; align-items: center; }
+.bp-main-wrapper { display: flex; gap: 15px; width: 100%; max-width: 1150px; height: 460px; align-items: flex-start; }
+.bp-grid-container { flex: 3.2; background: rgba(13, 22, 39, 0.95); border: 2px solid #1d4ed8; border-radius: 6px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+.bp-grid-header { background: #172554; display: flex; align-items: center; padding: 6px 10px; border-bottom: 2px solid #1e3a8a; justify-content: space-between; }
+.nav-arrow-btn { background: #0f172a; color: #94a3b8; font-size: 11px; font-weight: 900; padding: 6px 12px; border-radius: 4px; border: 1px solid #334155; cursor: pointer; }
 .tier-box-main { background: #090d16; border: 1px solid #3b82f6; padding: 2px 10px; border-radius: 4px; text-align: center; }
-.tier-label-small { font-size: 7px; color: #94a3b8; font-weight: 900; letter-spacing: 1px; }
-.tier-num-large { font-size: 16px; font-weight: 900; color: #fff; line-height: 1; }
-
-.tier-stars-status { display: flex; flex-direction: column; align-items: center; }
-
+.tier-label-small { font-size: 7px; color: #94a3b8; font-weight: 900; }
+.tier-num-large { font-size: 16px; font-weight: 900; color: #fff; }
 .season-info-center { text-align: center; color: #fff; }
 .page-indicator { font-size: 10px; font-weight: bold; color: #cbd5e1; background: #0f172a; padding: 3px 8px; border-radius: 4px; border: 1px solid #334155; }
-
-.bp-columns-header {
-    display: grid; grid-template-columns: 40px repeat(7, 1fr); background: #0f172a; padding: 5px 8px; border-bottom: 1px solid #1e293b; text-align: center;
-}
+.bp-columns-header { display: grid; grid-template-columns: 40px repeat(7, 1fr); background: #0f172a; padding: 5px 8px; border-bottom: 1px solid #1e293b; text-align: center; }
 .col-num-tag { font-size: 11px; font-weight: bold; color: #64748b; }
-
 .bp-rows-body { display: flex; flex-direction: column; gap: 6px; padding: 10px; background: rgba(7, 12, 22, 0.8); }
-
 .bp-row-line { display: grid; grid-template-columns: 40px repeat(7, 1fr); gap: 6px; align-items: center; }
 .row-tag-name { font-size: 9px; font-weight: 900; color: #64748b; text-align: center; }
 .paid-tag { color: #f59e0b; }
-
-.bp-item-slot {
-    background: #111c33; border: 2px solid #1e3a8a; height: 58px; border-radius: 5px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; cursor: pointer; transition: all 0.2s;
-}
+.bp-item-slot { background: #111c33; border: 2px solid #1e3a8a; height: 58px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; cursor: pointer; }
 .bp-item-slot.unlocked { background: #162645; border-color: #3b82f6; }
 .bp-item-slot.locked { opacity: 0.4; border-color: #1e293b; }
-.bp-item-slot.item-selected { border-color: #f59e0b; box-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
-.bp-item-slot:hover { transform: scale(1.02); }
-
+.bp-item-slot.item-selected { border-color: #f59e0b; }
 .item-icon { font-size: 18px; }
-.check-mark {
-    position: absolute; bottom: 2px; right: 3px; background: #22c55e; color: #000; font-size: 8px; font-weight: 900; width: 12px; height: 12px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-}
-
-.bp-grid-footer {
-    background: #0f172a; padding: 8px 12px; display: flex; align-items: center; gap: 10px; border-top: 1px solid #1e3a8a; cursor: pointer; transition: background 0.2s;
-}
-.bp-grid-footer:hover { background: #162238; }
+.check-mark { position: absolute; bottom: 2px; right: 3px; background: #22c55e; color: #000; font-size: 8px; font-weight: 900; width: 12px; height: 12px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.bp-grid-footer { background: #0f172a; padding: 8px 12px; display: flex; align-items: center; gap: 10px; border-top: 1px solid #1e3a8a; cursor: pointer; }
 .footer-icon-btn { background: #3b82f6; color: #fff; width: 24px; height: 24px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 11px; }
 .footer-text-info { display: flex; flex-direction: column; }
-
-/* Painel Lateral Direito (Inspect - Ex: Gale Force) */
-.bp-inspect-sidebar {
-    flex: 1.2; background: linear-gradient(180deg, #111d35 0%, #070b14 100%);
-    border: 2px solid #1d4ed8; border-radius: 6px; display: flex; flex-direction: column; overflow: hidden; height: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-}
-.inspect-item-3d-preview {
-    flex: 2; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%); position: relative;
-}
-.preview-weapon-icon { font-size: 50px; filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.6)); animation: floatAnim 3s ease-in-out infinite; }
-
-@keyframes floatAnim {
-    0%, 100% { transform: translateY(0) rotate(-10deg); }
-    50% { transform: translateY(-6px) rotate(-5deg); }
-}
-
+.bp-inspect-sidebar { flex: 1.2; background: linear-gradient(180deg, #111d35 0%, #070b14 100%); border: 2px solid #1d4ed8; border-radius: 6px; display: flex; flex-direction: column; overflow: hidden; height: 100%; }
+.inspect-item-3d-preview { flex: 2; display: flex; align-items: center; justify-content: center; position: relative; }
+.preview-weapon-icon { font-size: 50px; }
 .inspect-details-box { flex: 1.2; padding: 12px; background: rgba(8, 13, 24, 0.95); border-top: 1px solid #1e3a8a; }
-.inspect-category-tag { font-size: 8px; font-weight: 900; color: #f59e0b; letter-spacing: 1px; margin-bottom: 3px; }
-.inspect-title { color: #fff; font-size: 14px; font-weight: 900; margin-bottom: 6px; letter-spacing: 1px; }
-.inspect-desc { color: #94a3b8; font-size: 10px; line-height: 1.4; }
+.inspect-category-tag { font-size: 8px; font-weight: 900; color: #f59e0b; }
+.inspect-title { color: #fff; font-size: 14px; font-weight: 900; }
+.inspect-desc { color: #94a3b8; font-size: 10px; }
 
 .panel-box { background: rgba(15, 23, 42, 0.95); border: 1px solid #374151; border-radius: 8px; padding: 30px; max-width: 800px; margin: 20px auto; color: #fff; }
-.panel-box h2 { color: #00ffcc; margin-top: 0; }
-
-#crosshair {
-    position: absolute; top: 50%; left: 50%; width: 6px; height: 6px; background-color: #00ffcc; border-radius: 50%; transform: translate(-50%, -50%); display: none; z-index: 100; pointer-events: none;
-}
+.panel-box h2 { color: #00ffcc; }
+#crosshair { position: absolute; top: 50%; left: 50%; width: 6px; height: 6px; background-color: #00ffcc; border-radius: 50%; transform: translate(-50%, -50%); display: none; z-index: 100; pointer-events: none; }
