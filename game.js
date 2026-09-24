@@ -5,12 +5,12 @@ let velocity = new THREE.Vector3();
 let direction = new THREE.Vector3();
 let prevTime = performance.now();
 
-// Controlo dos 100 Tiers e Páginas
+// Configuração exata: 100 Tiers divididos em 13 páginas (7 itens por página nas primeiras e o ajuste na última)
 let currentTier = 24;
-let currentPage = 4;
+let currentPage = 1;
 const totalTiers = 100;
 const tiersPerPage = 7;
-const maxPages = Math.ceil(totalTiers / tiersPerPage);
+const maxPages = 13; // Exatamente 13 páginas solicitadas
 
 window.addEventListener('DOMContentLoaded', () => {
     renderBattlePassPage();
@@ -41,6 +41,8 @@ function switchTab(tabName, event) {
         document.getElementById('content-shop').classList.add('active-content');
     } else if (tabName === 'career') {
         document.getElementById('content-career').classList.add('active-content');
+    } else if (tabName === 'store') {
+        document.getElementById('content-store').classList.add('active-content');
     }
 
     if (event && event.target) {
@@ -48,28 +50,14 @@ function switchTab(tabName, event) {
     }
 }
 
-function toggleModeDropdown() {
-    const dropdown = document.getElementById('mode-dropdown');
-    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-}
-
-function setGameMode(mode) {
-    document.getElementById('current-mode-text').innerText = mode;
-    document.getElementById('mode-dropdown').style.display = 'none';
-}
-
-window.addEventListener('click', function(e) {
-    if (!e.target.closest('.mode-selector-wrapper')) {
-        const dropdown = document.getElementById('mode-dropdown');
-        if (dropdown) dropdown.style.display = 'none';
-    }
-});
-
-// Renderização dinâmica das páginas (até ao nível 100)
+// Renderização das recompensas por página com navegação individual (1 em 1)
 function renderBattlePassPage() {
     document.getElementById('current-tier-num').innerText = currentTier;
     document.getElementById('lobby-tier-display').innerText = currentTier;
     document.getElementById('page-indicator-text').innerText = `PAGE ${currentPage} / ${maxPages}`;
+    
+    let nextTierVal = currentTier < totalTiers ? currentTier + 1 : totalTiers;
+    document.getElementById('next-tier-target').innerText = nextTierVal;
 
     const colsHeader = document.getElementById('bp-cols-header');
     const rowsContainer = document.getElementById('bp-rows-container');
@@ -80,29 +68,32 @@ function renderBattlePassPage() {
 
     const startTierIndex = (currentPage - 1) * tiersPerPage + 1;
 
+    // Ícones e recompensas inspiradas na imagem de referência
     const rewardIcons = ['🛡️', '🖼️', '⭐', '🪙', '🔥', '⚔️', '🎨', '👤', '🎁', '⚡'];
 
     for (let i = 0; i < tiersPerPage; i++) {
         let tierNumber = startTierIndex + i;
-        if (tierNumber > totalTiers) tierNumber = totalTiers;
+        if (tierNumber > totalTiers) break; // Trava estritamente no 100
 
         colsHeader.innerHTML += `<div class="col-num-tag">${tierNumber}</div>`;
 
         let isUnlocked = tierNumber <= currentTier;
-        let iconFree = rewardIcons[(tierNumber + 1) % rewardIcons.length];
+        let iconFree = rewardIcons[(tierNumber + 2) % rewardIcons.length];
         let iconPaid = rewardIcons[tierNumber % rewardIcons.length];
+        
         let nameFreeItem = `Recompensa Gratuita Tier ${tierNumber}`;
-        let namePaidItem = `Recompensa Premium Tier ${tierNumber}`;
+        let namePaidItem = tierNumber === 24 ? "GALE FORCE" : `Recompensa Premium Tier ${tierNumber}`;
+        let descPaidItem = tierNumber === 24 ? "Rise above the storm.<br>Part of the Valiant set." : `Item exclusivo do Passe de Batalha para o nível ${tierNumber}.`;
 
         freeRowHTML += `
-            <div class="bp-item-slot ${isUnlocked ? 'unlocked' : 'locked'}" onclick="inspectItem('${nameFreeItem}', 'Recompensa gratuita correspondente ao tier ${tierNumber}.')">
+            <div class="bp-item-slot ${isUnlocked ? 'unlocked' : 'locked'}" onclick="inspectItem('${nameFreeItem}', 'Recompensa gratuita do nível ${tierNumber}.', '${iconFree}')">
                 <span class="item-icon">${iconFree}</span>
                 ${isUnlocked ? '<div class="check-mark">✔</div>' : ''}
             </div>
         `;
 
         paidRowHTML += `
-            <div class="bp-item-slot premium ${isUnlocked ? 'unlocked item-selected' : 'locked'}" onclick="inspectItem('${namePaidItem}', 'Recompensa exclusiva do Passe Pago para o Tier ${tierNumber}.')">
+            <div class="bp-item-slot premium ${isUnlocked ? 'unlocked item-selected' : 'locked'}" onclick="inspectItem('${namePaidItem}', '${descPaidItem}', '${iconPaid}')">
                 <span class="item-icon">${iconPaid}</span>
                 ${isUnlocked ? '<div class="check-mark">✔</div>' : ''}
             </div>
@@ -115,6 +106,7 @@ function renderBattlePassPage() {
     `;
 }
 
+// Funções para avançar ou recuar página por página de forma fluida
 function changePage(direction) {
     currentPage += direction;
     if (currentPage < 1) currentPage = 1;
@@ -125,7 +117,7 @@ function changePage(direction) {
 function buyBattlePassTier() {
     let coinsElem = document.getElementById('player-coins');
     let currentCoins = parseInt(coinsElem.innerText);
-    const tierCost = 150;
+    const tierCost = 100;
 
     if (currentCoins >= tierCost) {
         if (currentTier < totalTiers) {
@@ -133,7 +125,7 @@ function buyBattlePassTier() {
             coinsElem.innerText = currentCoins;
             currentTier++;
             
-            currentPage = Math.ceil(currentTier / tiersPerPage);
+            currentPage = Math.min(Math.ceil(currentTier / tiersPerPage), maxPages);
             renderBattlePassPage();
             alert(`🎉 Subiu com sucesso para o Tier ${currentTier}!`);
         } else {
@@ -144,9 +136,10 @@ function buyBattlePassTier() {
     }
 }
 
-function inspectItem(itemName, itemDescription) {
+function inspectItem(itemName, itemDescription, icon) {
     document.getElementById('inspect-name').innerText = itemName;
     document.getElementById('inspect-desc').innerHTML = itemDescription;
+    document.getElementById('inspect-icon-display').innerText = icon;
 }
 
 function launchGame() {
@@ -184,13 +177,6 @@ function init3DWorld() {
     );
     floor.rotation.x = -Math.PI / 2;
     scene.add(floor);
-
-    const box = new THREE.Mesh(
-        new THREE.BoxGeometry(2, 2, 2),
-        new THREE.MeshStandardMaterial({ color: 0x00ffcc })
-    );
-    box.position.set(0, 1, -8);
-    scene.add(box);
 
     window.addEventListener('keydown', (e) => {
         if (e.code === 'KeyW') moveForward = true;
