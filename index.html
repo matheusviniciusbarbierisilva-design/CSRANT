@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tactical FPS - Full Lobby</title>
+    <title>Tactical FPS - Complete Edition</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ECRÃ 1: SELEÇÃO DE MODOS DE ENTRADA -->
+    <!-- ECRÃ 1: SELEÇÃO DE MODOS -->
     <div id="mode-select-screen">
         <div class="mode-title">SELECIONAR O MODO DE JOGO</div>
         <div class="mode-container">
@@ -38,10 +38,10 @@
                 <div class="tab" onclick="switchTab('shop', event)">LOJA</div>
                 <div class="tab" onclick="switchTab('career', event)">CARREIRA</div>
             </div>
-            <div class="currency-box">🪙 <span id="player-coins">0</span></div>
+            <div class="currency-box">🪙 <span id="player-coins">3500</span></div>
         </div>
 
-        <!-- CONTEÚDO DA ABA: LOBBY (Padrão) -->
+        <!-- ABA: LOBBY -->
         <div id="content-lobby" class="tab-content active-content">
             <div class="level-panel">
                 <div class="level-header">
@@ -52,12 +52,11 @@
                 <div style="font-size: 11px; color: #8b949e;">3,516 / 3,950 XP</div>
                 <div class="battle-pass-tier">
                     <span>PASSE - TIER 1</span>
-                    <span style="color: #ffcc00;">0 / 10 ⭐️</span>
+                    <span style="color: #ffcc00;">3 / 10 ⭐️</span>
                 </div>
             </div>
 
             <div class="play-section">
-                <!-- Seletor de Modo de Equipa (1v1 a 5v5) -->
                 <div class="mode-selector-wrapper">
                     <div class="mode-selector-btn" onclick="toggleModeDropdown()">SOLO • <span id="current-mode-text">TÁTICO 5V5</span> ▾</div>
                     <div id="mode-dropdown" class="dropdown-menu">
@@ -72,7 +71,7 @@
             </div>
         </div>
 
-        <!-- CONTEÚDO DA ABA: PASSE DE COMBATE (Estilo Clássico) -->
+        <!-- ABA: PASSE DE COMBATE (Estilo Clássico) -->
         <div id="content-battlepass" class="tab-content">
             <div class="bp-header-banner">
                 <div>
@@ -81,16 +80,15 @@
                 </div>
                 <div class="bp-purchase-actions">
                     <button class="bp-buy-btn primary" onclick="buyBattlePass(900)">
-                        ADQUIRIR PASSE 🪙 900
+                        ADQUIRIR PASSE 🪙 900[cite: 11]
                     </button>
                     <button class="bp-buy-btn secondary" onclick="buyBattlePassBundle(2800)">
-                        PACOTÃO 25 TIERS 🪙 2800
+                        PACOTÃO 25 TIERS 🪙 2800[cite: 11]
                     </button>
                 </div>
             </div>
 
             <div class="bp-grid-container">
-                <!-- Cabeçalho dos Tiers -->
                 <div class="bp-grid-header">
                     <div class="tier-indicator">TIER <span id="current-tier-num">24</span></div>
                     <div class="tier-cols">
@@ -101,31 +99,9 @@
                         <div class="col-num">5</div>
                         <div class="col-num">6</div>
                         <div class="col-num">7</div>
-                        <div class="col-num">8</div>
-                        <div class="col-num">9</div>
-                        <div class="col-num">10</div>
-                        <div class="col-num">11</div>
-                        <div class="col-num">12</div>
-                        <div class="col-num">13</div>
-                        <div class="col-num">14</div>
-                        <div class="col-num">15</div>
-                        <div class="col-num">16</div>
-                        <div class="col-num">17</div>
-                        <div class="col-num">18</div>
-                        <div class="col-num">19</div>
-                        <div class="col-num">20</div>
-                        <div class="col-num">21</div>
-                        <div class="col-num">22</div>
-                        <div class="col-num">23</div>
-                        <div class="col-num">24</div>
-                        <div class="col-num">25</div>
-                        <div class="col-num">26</div>
-                        <div class="col-num">27</div>
-                        <div class="col-num">28</div>
                     </div>
                 </div>
 
-                <!-- Corpo da Grelha de Recompensas -->
                 <div class="bp-grid-body">
                     <div class="bp-row free-row">
                         <div class="row-label">FREE</div>
@@ -145,11 +121,10 @@
                         <div class="bp-slot premium unlocked">⭐</div>
                         <div class="bp-slot premium unlocked">🪙</div>
                         <div class="bp-slot premium unlocked">🔥</div>
-                        <div class="bp-slot premium unlocked item-selected" onclick="inspectItem('Gale Force', 'Ferramenta de Coleta Épica - Parte do conjunto Valente.')">⚔️</div>
+                        <div class="bp-slot premium unlocked item-selected" onclick="inspectItem('Gale Force', 'Ferramenta de Coleta Épica.<br>Parte do conjunto Valente.')">⚔️</div>
                     </div>
                 </div>
 
-                <!-- Painel de Inspeção Lateral Estilo Jogo -->
                 <div class="bp-inspect-panel">
                     <div class="inspect-title" id="inspect-name">GALE FORCE</div>
                     <div class="inspect-desc" id="inspect-desc">Ferramenta de Coleta Épica.<br>Parte do conjunto Valente.</div>
@@ -157,7 +132,7 @@
             </div>
         </div>
 
-        <!-- CONTEÚDO DA ABA: MISSÕES -->
+        <!-- ABA: MISSÕES -->
         <div id="content-missions" class="tab-content">
             <div class="panel-box">
                 <h2>MISSÕES DIÁRIAS E SEMANAIS</h2>
@@ -169,8 +144,8 @@
             </div>
         </div>
 
-        <!-- CONTEÚDO DA ABA: ARSENAL -->
-                    <div id="content-arsenal" class="tab-content">
+        <!-- ABA: ARSENAL -->
+        <div id="content-arsenal" class="tab-content">
             <div class="panel-box">
                 <h2>O SEU ARSENAL DE ARMAS</h2>
                 <div class="arsenal-grid">
@@ -182,7 +157,7 @@
             </div>
         </div>
 
-        <!-- CONTEÚDO DA ABA: LOJA -->
+        <!-- ABA: LOJA -->
         <div id="content-shop" class="tab-content">
             <div class="panel-box">
                 <h2>LOJA DE ITENS</h2>
@@ -199,7 +174,7 @@
             </div>
         </div>
 
-        <!-- CONTEÚDO DA ABA: CARREIRA -->
+        <!-- ABA: CARREIRA -->
         <div id="content-career" class="tab-content">
             <div class="panel-box">
                 <h2>ESTATÍSTICAS DE CARREIRA</h2>
