@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tactical FPS - Classic Edition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <!-- ECRÃ 1: SELEÇÃO DE MODOS -->
+    <div id="mode-select-screen">
+        <div class="mode-title">SELECIONAR O MODO DE JOGO</div>
+        <div class="mode-container">
+            <div class="mode-card" onclick="startLobby()">
+                <div class="mode-img mode-1"></div>
+                <div class="mode-name">ZONA DE TREINO</div>
+            </div>
+            <div class="mode-card featured" onclick="startLobby()">
+                <div class="mode-img mode-2"></div>
+                <div class="mode-name" style="color: #00ffcc;">TÁTICO 5V5</div>
+            </div>
+            <div class="mode-card" onclick="startLobby()">
+                <div class="mode-img mode-3"></div>
+                <div class="mode-name">OFICINA / CRIATIVO</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ECRÃ 2: LOBBY PRINCIPAL -->
+    <div id="lobby-screen">
+        <div class="top-nav">
+            <div class="nav-tabs">
+                <div class="tab active">LOBBY</div>
+                <div class="tab">PASSE DE COMBATE</div>
+                <div class="tab">MISSÕES</div>
+                <div class="tab">ARSENAL</div>
+                <div class="tab">LOJA</div>
+                <div class="tab">CARREIRA</div>
+            </div>
+            <div class="currency-box">🪙 400</div>
+        </div>
+
+        <div class="level-panel">
+            <div class="level-header">
+                <span>NÍVEL 31</span>
+                <span style="color: #00ffcc;">⭐️ 2</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <div style="font-size: 11px; color: #8b949e;">3,516 / 3,950 XP</div>
+            
+            <div class="battle-pass-tier">
+                <span>PASSE - TIER 29</span>
+                <span style="color: #ffcc00;">3 / 10 ⭐️</span>
+            </div>
+        </div>
+
+        <div class="play-section">
+            <div class="mode-selector-btn">SOLO • TÁTICO</div>
+            <button class="play-btn" id="play-match-btn" onclick="launchGame()">JOGAR</button>
+        </div>
+    </div>
+
+    <!-- MIRA DO JOGO -->
+    <div id="crosshair"></div>
+
+    <!-- BIBLIOTECAS EXTERNAS (Three.js estável) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/PointerLockControls.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
