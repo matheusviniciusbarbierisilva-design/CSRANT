@@ -53,29 +53,7 @@ window.addEventListener('click', function(e) {
     }
 });
 
-// Comprar Passe de Batalha (900 moedas)
 function buyBattlePass(cost) {
-    let coinsElem = document.getElementById('player-coins');
-    let currentCoins = parseInt(coinsElem.innerText);
-
-    if (currentCoins >= cost) {
-        currentCoins -= cost;
-        coinsElem.innerText = currentCoins;
-        alert('🎉 Parabéns! Adquiriu o Passe de Batalha com sucesso por 900 moedas!');
-        
-        const lockedSlots = document.querySelectorAll('.bp-slot.locked');
-        lockedSlots.forEach(slot => {
-            slot.classList.remove('locked');
-            slot.classList.add('unlocked');
-            slot.innerText = '⭐';
-        });
-    } else {
-        alert('❌ Moedas insuficientes! Precisa de 900 moedas para comprar o passe.');
-    }
-}
-
-// Comprar Pacotão 25 Categorias (2800 moedas)
-function buyBattlePassBundle(cost) {
     let coinsElem = document.getElementById('player-coins');
     let currentCoins = parseInt(coinsElem.innerText);
 
@@ -84,25 +62,19 @@ function buyBattlePassBundle(cost) {
         coinsElem.innerText = currentCoins;
         
         let tierNumElem = document.getElementById('current-tier-num');
-        let newTier = parseInt(tierNumElem.innerText) + 25;
+        let newTier = parseInt(tierNumElem.innerText) + 1;
         tierNumElem.innerText = newTier;
 
-        alert('🚀 Pacotão de 25 categorias adquirido com sucesso por 2800 moedas!');
+        alert('🎉 Tier comprado com sucesso!');
+        
+        const lockedSlots = document.querySelectorAll('.bp-item-slot.locked');
+        if(lockedSlots.length > 0) {
+            lockedSlots[0].classList.remove('locked');
+            lockedSlots[0].classList.add('unlocked');
+            lockedSlots[0].innerHTML = '<span class="item-icon">⭐</span><div class="check-mark">✔</div>';
+        }
     } else {
-        alert('❌ Moedas insuficientes! O pacotão de 25 tiers custa 2800 moedas.');
-    }
-}
-
-function buyItem(cost) {
-    let coinsElem = document.getElementById('player-coins');
-    let currentCoins = parseInt(coinsElem.innerText);
-    
-    if (currentCoins >= cost) {
-        currentCoins -= cost;
-        coinsElem.innerText = currentCoins;
-        alert('🎉 Compra efetuada com sucesso!');
-    } else {
-        alert('❌ Moedas insuficientes!');
+        alert('❌ Moedas insuficientes para comprar o tier!');
     }
 }
 
