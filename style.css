@@ -95,7 +95,7 @@ body {
 .play-btn:hover { background: #ffde59; transform: scale(1.02); }
 
 
-/* BATTLE PASS (100 TIERS) */
+/* BATTLE PASS (100 TIERS COM SETAS NAS PONTAS) */
 #content-battlepass {
     background: linear-gradient(135deg, #1b365d 0%, #0a1424 100%) !important;
     display: flex; justify-content: center; align-items: center;
@@ -114,8 +114,10 @@ body {
     background: #172554; display: flex; align-items: center; padding: 8px 12px; border-bottom: 2px solid #1e3a8a; justify-content: space-between;
 }
 
-.nav-arrow-btn { background: #0f172a; color: #94a3b8; font-size: 11px; font-weight: bold; padding: 6px 10px; border-radius: 4px; border: 1px solid #334155; cursor: pointer; }
-.nav-arrow-btn:hover { color: #fff; border-color: #3b82f6; }
+.nav-arrow-btn {
+    background: #0f172a; color: #94a3b8; font-size: 11px; font-weight: 900; padding: 8px 14px; border-radius: 4px; border: 1px solid #334155; cursor: pointer; transition: all 0.2s;
+}
+.nav-arrow-btn:hover { color: #fff; border-color: #3b82f6; background: #1e293b; }
 
 .tier-box-main { background: #090d16; border: 1px solid #3b82f6; padding: 4px 14px; border-radius: 4px; text-align: center; }
 .tier-label-small { font-size: 8px; color: #94a3b8; font-weight: 900; letter-spacing: 1px; }
