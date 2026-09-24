@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tactical FPS - 100 Tiers Battle Pass</title>
+    <title>Tactical FPS - Battle Pass 100 Tiers</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -92,49 +92,48 @@
             </div>
         </div>
 
-        <!-- ABA: BATTLE PASS (100 Tiers com Paginação Dinâmica) -->
+        <!-- ABA: BATTLE PASS (Com Setas de Navegação até ao Nível 100) -->
         <div id="content-battlepass" class="tab-content">
             <div class="bp-main-wrapper">
                 
                 <div class="bp-grid-container">
                     
-                    <!-- Cabeçalho com Navegação de Páginas -->
+                    <!-- Cabeçalho com Setas de Navegação Dedicadas nas Pontas -->
                     <div class="bp-grid-header">
-                        <div class="nav-arrow-btn" onclick="changePage(-1)">◀ ANTERIOR</div>
+                        <div class="nav-arrow-btn" onclick="changePage(-1)">◀ L2</div>
+                        
                         <div class="tier-box-main">
                             <div class="tier-label-small">TIER</div>
                             <div class="tier-num-large" id="current-tier-num">24</div>
                         </div>
+                        
                         <div class="tier-stars-status">
                             <div style="font-size:11px; color:#fbbf24; font-weight:bold; margin-bottom:3px;">⭐ 8 / 10</div>
                             <div class="progress-bar" style="width: 120px; height: 4px;"><div class="progress-fill" style="width: 80%;"></div></div>
                         </div>
 
                         <div class="season-info-center">
-                            <div style="font-size: 14px; font-weight: 900; letter-spacing: 1px;">SEASON 4 • 100 TIERS</div>
+                            <div style="font-size: 14px; font-weight: 900; letter-spacing: 1px;">SEASON 4 (100 TIERS)</div>
                             <div style="font-size: 10px; color: #94a3b8;">SEASON ENDS: 60 Days</div>
                         </div>
 
                         <div class="page-indicator" id="page-indicator-text">PAGE 4 / 15</div>
-                        <div class="nav-arrow-btn right" onclick="changePage(1)">SEGUINTE ▶</div>
+                        
+                        <div class="nav-arrow-btn right" onclick="changePage(1)">R2 ▶</div>
                     </div>
 
-                    <!-- Números das Colunas (Atualizados dinamicamente por página) -->
-                    <div class="bp-columns-header" id="bp-cols-header">
-                        <!-- Gerado via JavaScript -->
-                    </div>
+                    <!-- Números das Colunas Dinâmicos -->
+                    <div class="bp-columns-header" id="bp-cols-header"></div>
 
-                    <!-- Linhas de Recompensas (Free e Paid geradas dinamicamente) -->
-                    <div class="bp-rows-body" id="bp-rows-container">
-                        <!-- Gerado via JavaScript -->
-                    </div>
+                    <!-- Linhas de Recompensas -->
+                    <div class="bp-rows-body" id="bp-rows-container"></div>
 
                     <!-- Rodapé de Compra -->
                     <div class="bp-grid-footer" onclick="buyBattlePassTier()">
                         <div class="footer-icon-btn">🛒</div>
                         <div class="footer-text-info">
                             <div style="font-weight: 900; font-size: 11px; color: #fff;">PURCHASE TIER (🪙 150)</div>
-                            <div style="font-size: 9px; color: #94a3b8;">Suba instantaneamente para o próximo nível do Passe de Batalha.</div>
+                            <div style="font-size: 9px; color: #94a3b8;">Avance instantaneamente para o próximo nível do Passe de Batalha.</div>
                         </div>
                     </div>
 
