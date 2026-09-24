@@ -72,16 +72,87 @@
             </div>
         </div>
 
-        <!-- CONTEÚDO DA ABA: PASSE DE COMBATE -->
+        <!-- CONTEÚDO DA ABA: PASSE DE COMBATE (Estilo Clássico) -->
         <div id="content-battlepass" class="tab-content">
-            <div class="panel-box">
-                <h2>PASSE DE COMBATE - TEMPORADA 1</h2>
-                <p>Evolua o seu passe completando missões e ganhe recompensas exclusivas.</p>
-                <div class="bp-grid">
-                    <div class="bp-item unlocked">Tier 1 (Reclamado)</div>
-                    <div class="bp-item unlocked">Tier 2 (Bloqueado)</div>
-                    <div class="bp-item current">Tier 3 (Bloqueado)</div>
-                    <div class="bp-item locked">Tier 4 (Bloqueado)</div>
+            <div class="bp-header-banner">
+                <div>
+                    <h2 style="margin:0; color:#fff; font-size: 20px;">SEASON 4 • PASSE DE BATALHA</h2>
+                    <span style="font-size: 12px; color: #9ca3af;">SEASON ENDS: 60 Days | PAGE 1 / 13</span>
+                </div>
+                <div class="bp-purchase-actions">
+                    <button class="bp-buy-btn primary" onclick="buyBattlePass(900)">
+                        ADQUIRIR PASSE 🪙 900
+                    </button>
+                    <button class="bp-buy-btn secondary" onclick="buyBattlePassBundle(2800)">
+                        PACOTÃO 25 TIERS 🪙 2800
+                    </button>
+                </div>
+            </div>
+
+            <div class="bp-grid-container">
+                <!-- Cabeçalho dos Tiers -->
+                <div class="bp-grid-header">
+                    <div class="tier-indicator">TIER <span id="current-tier-num">24</span></div>
+                    <div class="tier-cols">
+                        <div class="col-num">1</div>
+                        <div class="col-num">2</div>
+                        <div class="col-num">3</div>
+                        <div class="col-num">4</div>
+                        <div class="col-num">5</div>
+                        <div class="col-num">6</div>
+                        <div class="col-num">7</div>
+                        <div class="col-num">8</div>
+                        <div class="col-num">9</div>
+                        <div class="col-num">10</div>
+                        <div class="col-num">11</div>
+                        <div class="col-num">12</div>
+                        <div class="col-num">13</div>
+                        <div class="col-num">14</div>
+                        <div class="col-num">15</div>
+                        <div class="col-num">16</div>
+                        <div class="col-num">17</div>
+                        <div class="col-num">18</div>
+                        <div class="col-num">19</div>
+                        <div class="col-num">20</div>
+                        <div class="col-num">21</div>
+                        <div class="col-num">22</div>
+                        <div class="col-num">23</div>
+                        <div class="col-num">24</div>
+                        <div class="col-num">25</div>
+                        <div class="col-num">26</div>
+                        <div class="col-num">27</div>
+                        <div class="col-num">28</div>
+                    </div>
+                </div>
+
+                <!-- Corpo da Grelha de Recompensas -->
+                <div class="bp-grid-body">
+                    <div class="bp-row free-row">
+                        <div class="row-label">FREE</div>
+                        <div class="bp-slot unlocked">⭐</div>
+                        <div class="bp-slot unlocked">🎁</div>
+                        <div class="bp-slot locked">🔒</div>
+                        <div class="bp-slot locked">🔒</div>
+                        <div class="bp-slot locked">🔒</div>
+                        <div class="bp-slot unlocked">🎨</div>
+                        <div class="bp-slot locked">🔒</div>
+                    </div>
+                    <div class="bp-row premium-row">
+                        <div class="row-label premium-label">PASTE</div>
+                        <div class="bp-slot premium unlocked">🛡️</div>
+                        <div class="bp-slot premium unlocked">👤</div>
+                        <div class="bp-slot premium unlocked">👤</div>
+                        <div class="bp-slot premium unlocked">⭐</div>
+                        <div class="bp-slot premium unlocked">🪙</div>
+                        <div class="bp-slot premium unlocked">🔥</div>
+                        <div class="bp-slot premium unlocked item-selected" onclick="inspectItem('Gale Force', 'Ferramenta de Coleta Épica - Parte do conjunto Valente.')">⚔️</div>
+                    </div>
+                </div>
+
+                <!-- Painel de Inspeção Lateral Estilo Jogo -->
+                <div class="bp-inspect-panel">
+                    <div class="inspect-title" id="inspect-name">GALE FORCE</div>
+                    <div class="inspect-desc" id="inspect-desc">Ferramenta de Coleta Épica.<br>Parte do conjunto Valente.</div>
                 </div>
             </div>
         </div>
