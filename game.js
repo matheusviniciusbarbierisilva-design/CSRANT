@@ -61,7 +61,7 @@ function buyBattlePass(cost) {
     if (currentCoins >= cost) {
         currentCoins -= cost;
         coinsElem.innerText = currentCoins;
-        alert('🎉 Parabéns! Adquiriu o Passe de Batalha com sucesso por 900 moedas[cite: 11]!');
+        alert('🎉 Parabéns! Adquiriu o Passe de Batalha com sucesso por 900 moedas!');
         
         const lockedSlots = document.querySelectorAll('.bp-slot.locked');
         lockedSlots.forEach(slot => {
@@ -70,7 +70,7 @@ function buyBattlePass(cost) {
             slot.innerText = '⭐';
         });
     } else {
-        alert('❌ Moedas insuficientes! Precisa de 900 moedas para comprar o passe[cite: 11].');
+        alert('❌ Moedas insuficientes! Precisa de 900 moedas para comprar o passe.');
     }
 }
 
@@ -87,9 +87,9 @@ function buyBattlePassBundle(cost) {
         let newTier = parseInt(tierNumElem.innerText) + 25;
         tierNumElem.innerText = newTier;
 
-        alert('🚀 Pacotão de 25 categorias adquirido com sucesso por 2800 moedas[cite: 11]!');
+        alert('🚀 Pacotão de 25 categorias adquirido com sucesso por 2800 moedas!');
     } else {
-        alert('❌ Moedas insuficientes! O pacotão de 25 tiers custa 2800 moedas[cite: 11].');
+        alert('❌ Moedas insuficientes! O pacotão de 25 tiers custa 2800 moedas.');
     }
 }
 
