@@ -7,7 +7,6 @@ body {
     user-select: none;
 }
 
-/* ECRÃ 1: SELEÇÃO DE MODOS */
 #mode-select-screen {
     position: absolute;
     top: 0; left: 0;
@@ -34,8 +33,7 @@ body {
 }
 
 .mode-card {
-    width: 240px;
-    height: 380px;
+    width: 240px; height: 380px;
     background: #0f172a;
     border: 3px solid #1e293b;
     border-radius: 10px;
@@ -52,26 +50,14 @@ body {
     border-color: #00ffcc;
 }
 
-.mode-card.featured {
-    border-color: #38bdf8;
-}
-
-.mode-img {
-    width: 100%;
-    height: 75%;
-}
+.mode-card.featured { border-color: #38bdf8; }
+.mode-img { width: 100%; height: 75%; }
 .mode-1 { background: linear-gradient(180deg, #1e3a8a, #0f172a); }
 .mode-2 { background: linear-gradient(180deg, #be123c, #0f172a); }
 .mode-3 { background: linear-gradient(180deg, #047857, #0f172a); }
 
-.mode-name {
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    margin: auto;
-}
+.mode-name { color: #fff; font-size: 16px; font-weight: bold; margin: auto; }
 
-/* ECRÃ 2: LOBBY */
 #lobby-screen {
     position: absolute;
     top: 0; left: 0;
@@ -84,7 +70,7 @@ body {
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 55px;
-    background: rgba(5, 7, 11, 0.9);
+    background: rgba(5, 7, 11, 0.95);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -92,10 +78,7 @@ body {
     border-bottom: 1px solid #1f2937;
 }
 
-.nav-tabs {
-    display: flex;
-    gap: 10px;
-}
+.nav-tabs { display: flex; gap: 10px; }
 
 .tab {
     color: #9ca3af;
@@ -104,6 +87,7 @@ body {
     padding: 6px 14px;
     border-radius: 4px;
     cursor: pointer;
+    transition: background 0.2s, color 0.2s;
 }
 
 .tab.active, .tab:hover {
@@ -121,6 +105,32 @@ body {
     border: 1px solid #374151;
 }
 
+/* SISTEMA DE ABAS CONTEÚDO */
+.tab-content {
+    display: none;
+    position: absolute;
+    top: 55px; left: 0; right: 0; bottom: 0;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.tab-content.active-content {
+    display: block;
+}
+
+.panel-box {
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid #374151;
+    border-radius: 8px;
+    padding: 30px;
+    max-width: 800px;
+    margin: 40px auto;
+    color: #fff;
+}
+
+.panel-box h2 { color: #00ffcc; margin-top: 0; }
+
+/* PAINEL DO LOBBY NORMAL */
 .level-panel {
     position: absolute;
     top: 75px; left: 25px;
@@ -141,28 +151,19 @@ body {
 }
 
 .progress-bar {
-    width: 100%;
-    height: 5px;
+    width: 100%; height: 5px;
     background: #1f2937;
     border-radius: 3px;
     overflow: hidden;
     margin-bottom: 6px;
 }
 
-.progress-fill {
-    width: 75%;
-    height: 100%;
-    background: #00ffcc;
-}
+.progress-fill { width: 75%; height: 100%; background: #00ffcc; }
 
 .battle-pass-tier {
-    font-size: 11px;
-    color: #9ca3af;
-    margin-top: 8px;
-    border-top: 1px solid #1f2937;
-    padding-top: 6px;
-    display: flex;
-    justify-content: space-between;
+    font-size: 11px; color: #9ca3af;
+    margin-top: 8px; border-top: 1px solid #1f2937;
+    padding-top: 6px; display: flex; justify-content: space-between;
 }
 
 .play-section {
@@ -174,14 +175,44 @@ body {
     gap: 8px;
 }
 
+/* SELETOR DE MODOS (1v1 até 5v5) */
+.mode-selector-wrapper { position: relative; }
+
 .mode-selector-btn {
-    background: rgba(15, 23, 42, 0.9);
+    background: rgba(15, 23, 42, 0.95);
     border: 1px solid #374151;
     color: #fff;
-    padding: 6px 16px;
+    padding: 8px 18px;
     border-radius: 4px;
     font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    bottom: 45px; right: 0;
+    background: #0f172a;
+    border: 1px solid #374151;
+    border-radius: 4px;
+    width: 180px;
+    z-index: 250;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.dropdown-menu div {
+    padding: 10px 15px;
+    color: #cbd5e1;
     font-size: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #1e293b;
+}
+
+.dropdown-menu div:hover {
+    background: #ffcc00;
+    color: #000;
 }
 
 .play-btn {
@@ -196,11 +227,40 @@ body {
     box-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
 }
 
-.play-btn:hover {
-    background: #ffde59;
+.play-btn:hover { background: #ffde59; }
+
+/* GRELHAS DAS OUTRAS ABAS */
+.bp-grid, .arsenal-grid, .shop-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
 }
 
-/* MIRA */
+.bp-item, .weapon-card, .shop-item {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bp-item.current { border-color: #ffcc00; color: #ffcc00; }
+.weapon-card.selected { border-color: #00ffcc; color: #00ffcc; }
+
+.shop-item button {
+    background: #ffcc00; border: none; padding: 6px 12px; font-weight: bold; border-radius: 4px; cursor: pointer;
+}
+
+.mission-list { list-style: none; padding: 0; }
+.mission-list li { background: #1e293b; margin-bottom: 10px; padding: 12px; border-radius: 6px; display: flex; justify-content: space-between; }
+.mission-list span { color: #00ffcc; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; font-size: 15px; }
+
 #crosshair {
     position: absolute;
     top: 50%; left: 50%;
