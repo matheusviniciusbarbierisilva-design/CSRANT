@@ -1,1 +1,214 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #05070b;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none;
+}
 
+/* ECRÃ 1: SELEÇÃO DE MODOS */
+#mode-select-screen {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: linear-gradient(135deg, #05070b 0%, #111827 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 300;
+}
+
+.mode-title {
+    color: #fff;
+    font-size: 22px;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+    font-weight: 900;
+}
+
+.mode-container {
+    display: flex;
+    gap: 25px;
+}
+
+.mode-card {
+    width: 240px;
+    height: 380px;
+    background: #0f172a;
+    border: 3px solid #1e293b;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s, border-color 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mode-card:hover {
+    transform: translateY(-8px);
+    border-color: #00ffcc;
+}
+
+.mode-card.featured {
+    border-color: #38bdf8;
+}
+
+.mode-img {
+    width: 100%;
+    height: 75%;
+}
+.mode-1 { background: linear-gradient(180deg, #1e3a8a, #0f172a); }
+.mode-2 { background: linear-gradient(180deg, #be123c, #0f172a); }
+.mode-3 { background: linear-gradient(180deg, #047857, #0f172a); }
+
+.mode-name {
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    margin: auto;
+}
+
+/* ECRÃ 2: LOBBY */
+#lobby-screen {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    display: none;
+    z-index: 200;
+}
+
+.top-nav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 55px;
+    background: rgba(5, 7, 11, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    border-bottom: 1px solid #1f2937;
+}
+
+.nav-tabs {
+    display: flex;
+    gap: 10px;
+}
+
+.tab {
+    color: #9ca3af;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.tab.active, .tab:hover {
+    background: #ffcc00;
+    color: #000;
+}
+
+.currency-box {
+    background: #111827;
+    padding: 5px 12px;
+    border-radius: 15px;
+    color: #ffcc00;
+    font-weight: bold;
+    font-size: 13px;
+    border: 1px solid #374151;
+}
+
+.level-panel {
+    position: absolute;
+    top: 75px; left: 25px;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid #374151;
+    border-radius: 6px;
+    width: 260px;
+    padding: 12px;
+}
+
+.level-header {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 5px;
+    background: #1f2937;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.progress-fill {
+    width: 75%;
+    height: 100%;
+    background: #00ffcc;
+}
+
+.battle-pass-tier {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 8px;
+    border-top: 1px solid #1f2937;
+    padding-top: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.play-section {
+    position: absolute;
+    bottom: 25px; right: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.mode-selector-btn {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid #374151;
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.play-btn {
+    background: #ffcc00;
+    color: #000;
+    border: none;
+    font-size: 24px;
+    font-weight: 900;
+    padding: 12px 50px;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
+}
+
+.play-btn:hover {
+    background: #ffde59;
+}
+
+/* MIRA */
+#crosshair {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 6px; height: 6px;
+    background-color: #00ffcc;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 100;
+    pointer-events: none;
+}
